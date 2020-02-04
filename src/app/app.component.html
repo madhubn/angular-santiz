@@ -1,4 +1,7 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<!-- <p>
+	Start editing to see some magic happen :)
+</p> -->
+<textarea [(ngModel)]="text" (ngModelChange)="onChange($event)"></textarea>
+<div [innerHtml]="h_html | safeHtml">
+</div>
