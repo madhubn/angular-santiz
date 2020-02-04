@@ -72,8 +72,8 @@
 								<div class="col-6" *ngFor="let contact of staticFormGroup.controls; let j = index;">
 									<div [formGroupName]="j" class="row">
 										<div class="form-group col-6">
-											<label>Static</label>
-											<input class="form-control" formControlName="staticData" type="text">
+											<label>Contact Label</label>
+											<input class="form-control"  [formControl]="contact.staticData"  type="text">
 										</div>
 
 

@@ -80,8 +80,8 @@ export class AppComponent implements OnInit {
 
   // remove contact from group
   removeContact(index) {
-    // this.contactList = this.form.get('contacts') as FormArray;
-    this.contactList.removeAt(index);
+   this.contactList.removeAt(this.contactList.length - 1);
+    // this.contactList.removeAt(index);
   }
 
   // remove contact from group
