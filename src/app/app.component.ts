@@ -14,10 +14,16 @@ export class AppComponent implements OnInit {
 
   public form: FormGroup;
   public contactList: FormArray;
+  public staticList: FormArray;
 
   // returns all form groups under contacts
   get contactFormGroup() {
     return this.form.get("contacts") as FormArray;
+  }
+
+  // returns all form groups under contacts
+  get staticFormGroup() {
+    return this.form.get("statics") as FormArray;
   }
 
   constructor(private sanitizer: DomSanitizer, private fb: FormBuilder) {
@@ -37,11 +43,13 @@ export class AppComponent implements OnInit {
     this.form = this.fb.group({
       name: [null, Validators.compose([Validators.required])],
       organization: [null],
-      contacts: this.fb.array([this.createContact()])
+      contacts: this.fb.array([this.createContact()]),
+      statics: this.fb.array([])
     });
 
     // set contactlist to this field
     this.contactList = this.form.get("contacts") as FormArray;
+    this.staticList = this.form.get("statics") as FormArray;
   }
 
 
@@ -53,16 +61,33 @@ export class AppComponent implements OnInit {
       value: [null, Validators.compose([Validators.required, Validators.email])]
     });
   }
+  // contact formgroup
+  createStatics(): FormGroup {
+    return this.fb.group({
+      staticData: [null, Validators.compose([Validators.required])], // i.e. Home, Office
+    });
+  }
 
   // add a contact form group
   addContact() {
     this.contactList.push(this.createContact());
   }
 
+   // add a contact form group
+  addStaticData() {
+    this.staticList.push(this.createStatics());
+  }
+
   // remove contact from group
   removeContact(index) {
     // this.contactList = this.form.get('contacts') as FormArray;
     this.contactList.removeAt(index);
+  }
+
+  // remove contact from group
+  removeStatic(index) {
+    // this.contactList = this.form.get('contacts') as FormArray;
+    this.staticList.removeAt(index);
   }
 
   // triggered to change validation of value field type
