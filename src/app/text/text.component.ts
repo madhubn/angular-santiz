@@ -26,8 +26,15 @@ export class TextComponent {
     }
   }
 
+  removeIt() {
+    for (let i = 0; i <= 5; i++) {
+      this.addDynamicElement.removeAt(this.addDynamicElement.length - 1);
+    }
+  }
+
   // Submit Registration Form
   onSubmit() {
-    alert(JSON.stringify(this.registrationForm.get('addDynamicElement').value));
+    this.removeIt();
+    alert(JSON.stringify(this.registrationForm.get("addDynamicElement").value));
   }
 }
