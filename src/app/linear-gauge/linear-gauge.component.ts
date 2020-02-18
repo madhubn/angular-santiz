@@ -17,7 +17,10 @@ export class LinearGaugeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    
+    const max= this.max/10;
+    for(let i = this.min; i<= max ; i++){
+       this.majorTick.push(i * 10)
+    }
     this.value$ = interval(2000).pipe(map(() => 20));
     
     console.log('this.majorTick',this.majorTick);
