@@ -1,4 +1,8 @@
-<linear-gauge [value]="(value$ | async)" title="Temperature (°C)" width="400" height="150" min-value="min" max-value="max" major-ticks="majorTick" minor-ticks="2" stroke-ticks="true" highlights='false' color-plate="black" border-shadow-width="0"
+
+{{majorTick}}
+<div>
+  
+<linear-gauge  [value]="(value$ | async)" title="Temperature (°C)" width="400" height="150" min-value="min" max-value="max" major-ticks="majorTick" minor-ticks="2" stroke-ticks="true" highlights='false' color-plate="black" border-shadow-width="0"
     borders="false" bar-begin-circle="false" bar-width="10" tick-side="left" ticks-width="20" ticks-width-minor="10" number-side="left" font-numbers-size="20" needle-side="left" needle-type="arrow" needle-width="20" needle-start="10" needle-end="50" color-needle="blue"
     color-needle-end="rgba(255, 160, 122, .9)" animation-target="plate" class="gauge" color-major-ticks="#fff" color-minor-ticks="#fff" color-stroke-ticks="#fff" color-title="#fff" color-numbers="#fff" color-bar="red"  animation-duration="300"
     color-bar-progress="green">
