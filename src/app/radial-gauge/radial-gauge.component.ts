@@ -18,6 +18,9 @@ export class RadialGaugeComponent implements OnInit,AfterViewInit  {
    @ViewChild('scale_gauge', {static: false})
   private radialGauge: RadialGauge;
 
+  mins = 0;
+  maxs = 100;
+
   public scaleGaugeOptions: any;
   public value$: Observable<number>;
 
@@ -71,9 +74,8 @@ export class RadialGaugeComponent implements OnInit,AfterViewInit  {
         width: '300',
         height: '300',
         units: 'Lbs',
-        minValue: '0',
-        maxValue: '10',
-        majorTicks: '[0,1,2,3,4,5,6,7,8,9,0]',
+        minValue: this.mins,
+        maxValue: this.maxs,
         minorTicks: '2',
         strokeTicks: 'true',
         ticksAngle: '360',
