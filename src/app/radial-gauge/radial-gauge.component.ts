@@ -16,11 +16,14 @@ import { RadialGauge } from "ng-canvas-gauges";
 export class RadialGaugeComponent implements OnInit, AfterViewInit {
   @ViewChild("scale_gauge", { static: false })
   private radialGauge: RadialGauge;
+  @ViewChild("scale_gauge_semi", { static: false })
+  private radialGaugeSemi: RadialGauge;
 
   mins = 0;
   maxs = 100;
 
   public scaleGaugeOptions: any;
+  public scaleGaugeOptionsSemi: any;
   public value$: Observable<number>;
 
   private plateColor = {
@@ -40,6 +43,7 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.radialGauge.update(this.scaleGaugeOptions);
+    this.radialGaugeSemi.update(this.scaleGaugeOptionsSemi);
 
     // timer that updates plate.color property
     // interval(100).subscribe( t => this.updateCoverPlateColor() );
@@ -91,6 +95,57 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
       colorStrokeTicks: "#fff",
       colorTitle: "#fff",
       colorNumbers: "#fff"
+    };
+    this.scaleGaugeOptionsSemi = {
+      title: "",
+      width: "250",
+      height: "250",
+      majorTicks: "[-50,-40,-30,-20,-10,0,10,20,30,40,50]",
+      units: "°C",
+      minValue: -50,
+      maxValue: 50,
+      minorTicks: "2",
+      strokeTicks: "true",
+      ticksAngle: "225",
+      startAngle: "67.5",
+      valueBox: "true",
+      animationRule: "bounce",
+      animationDuration: "500",
+      colorPlate: "black",
+      //  highlightsWidth: 0,
+      highlights: [
+        { from: -50, to: 0, color: "red" },
+        { from: 0, to: 50, color: "blue" }
+      ],
+      colorMajorTicks: "#fff",
+      colorMinorTicks: "#fff",
+      colorStrokeTicks: "#fff",
+      colorTitle: "#fff",
+      colorNumbers: "#fff",
+      borderShadowWidth: 0,
+      borders: true,
+      needleType: "arrow",
+      needleWidth: 2,
+      needleCircleSize: 7,
+      colorBorderOuter: '#333',
+      colorBorderOuterEnd: '#111',
+      colorBorderMiddle: '#222',
+      colorBorderMiddleEnd: '#111',
+      colorBorderInner: '#111',
+      colorBorderInnerEnd: '#333',
+      colorNeedleShadowDown: '#333',
+      colorNeedleCircleOuter: '#333',
+      colorNeedleCircleOuterEnd: '#111',
+      colorNeedleCircleInner: '#111',
+      colorNeedleCircleInnerEnd: '#222',
+      colorValueBoxRect: '#222',
+      valueBoxBorderRadius: 0,
+      colorValueBoxRectEnd: '#333',
+      fontValue: 'led',
+      fontNumbers: 'led',
+      fontTitle: 'led',
+      fontUnits: 'led',
+      // colorNeedleCircleOuter: "true",
     };
   }
 }
