@@ -46,8 +46,16 @@ export class LinearGaugeComponent implements OnInit {
     //   data.push(i * 10);
     // }
     // this.majorTick = data;
-    this.value$ = interval(2000).pipe(map(() => this.inputValue));
+    this.value$ = interval().pipe(map(() => this.inputValue));
     this.initOptions();
+  }
+
+  update() {
+    alert("gghghghhjhj");
+    this.scaleGaugeOptions = {
+      title: `Madhyi  = ${200} (°C)`
+    };
+     this.linearGauge.update(this.scaleGaugeOptions);
   }
 
   private initOptions() {
