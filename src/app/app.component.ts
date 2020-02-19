@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   // returns all form groups under contacts
-  get staticFormGroup() {
+  get staticFormGroup() {  
     return this.form.get("statics") as FormArray;
   }
 
