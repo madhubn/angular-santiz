@@ -45,7 +45,7 @@ export class RadialGaugeComponent implements OnInit,AfterViewInit  {
     this.radialGauge.update(this.scaleGaugeOptions);
 
     // timer that updates plate.color property
-    interval(100).subscribe( t => this.updateCoverPlateColor() );
+    // interval(100).subscribe( t => this.updateCoverPlateColor() );
   }
 
   // Update the cover.plate red property and update scaleGaugeOptions
@@ -71,8 +71,9 @@ export class RadialGaugeComponent implements OnInit,AfterViewInit  {
   private initOptions() {
     this.scaleGaugeOptions = {
         title: 'Scale',
-        width: '300',
-        height: '300',
+        width: '250',
+        height: '250',
+        majorTicks: '[0,1,2,3,4,5,6,7,8,9,0]',
         units: 'Lbs',
         minValue: this.mins,
         maxValue: this.maxs,
@@ -83,8 +84,10 @@ export class RadialGaugeComponent implements OnInit,AfterViewInit  {
         valueBox: 'true',
         animationRule: 'bounce',
         animationDuration: '500',
-        colorPlate: 'rgba(200,50,50,1)',
-        highlights: '[]'
+        colorPlate: 'black',
+        highlights: '[]',
+        colorMajorTicks: '#fff',
+        colorMinorTicks: '#fff',
   };
 }
 

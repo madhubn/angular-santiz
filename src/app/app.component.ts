@@ -71,6 +71,7 @@ export class AppComponent implements OnInit {
     this.linearUIConfig.colorPlate = "black";
     this.linearUIConfig.colorStrokeTicks = "#fff";
     this.linearUIConfig.colorTitle = "#fff";
+    console.log(new Date().getTime())
   }
 
   onChange(data: any) {
