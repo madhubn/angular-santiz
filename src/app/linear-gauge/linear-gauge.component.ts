@@ -8,6 +8,14 @@ export class LinearUIConfig {
   max: number;
   majorTick = [];
   colorPlate: String;
+  colorMajorTicks: String;
+  colorMinorTicks: String;
+  colorStrokeTicks: String;
+  colorTitle: String;
+  colorValueBoxBackground: String;
+  colorNumbers: String;
+  colorBar: String;
+  colorBarProgress: String;
 }
 
 @Component({
@@ -64,7 +72,7 @@ export class LinearGaugeComponent implements OnInit {
       borderMiddleWidth: 0,
       borderInnerWidth: 0,
       borderShadowWidth: 0,
-      colorPlate: "black",
+     
       barBeginCircle: 0,
       barWidth: 10,
       tickSide: "left",
@@ -78,6 +86,7 @@ export class LinearGaugeComponent implements OnInit {
       fontNumbersSize: 20,
       ticksWidthMinor: 10,
       ticksPadding: 5,
+      colorPlate: "black",
       colorMajorTicks: "#fff",
       colorMinorTicks: "#fff",
       colorStrokeTicks: "#fff",
