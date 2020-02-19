@@ -2,6 +2,17 @@ import { Component, SecurityContext, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+export class LinearUIConfig {
+  colorPlate: String;
+  colorMajorTicks: String;
+  colorMinorTicks: String;
+  colorStrokeTicks: String;
+  colorTitle: String;
+  colorNumbers: String;
+  colorBar: String;
+  colorBarProgress: String;
+}
+
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
@@ -11,6 +22,8 @@ export class AppComponent implements OnInit {
   name = "Angular";
   html: string;
   h_html: string;
+
+  linearUIConfig:LinearUIConfig = new LinearUIConfig();
 
   public form: FormGroup;
   public contactList: FormArray;
@@ -44,6 +57,14 @@ export class AppComponent implements OnInit {
       SecurityContext.HTML,
       '<svg onload="alert(2)"> blah </svg>'
     );
+    this.linearUIConfig.colorBar = 'red';
+    this.linearUIConfig.colorBarProgress = 'green';
+    this.linearUIConfig.colorMajorTicks = '#fff';
+    this.linearUIConfig.colorMinorTicks = '#fff';
+    this.linearUIConfig.colorNumbers= '#fff';
+    this.linearUIConfig.colorPlate= 'black';
+    this.linearUIConfig.colorStrokeTicks= '#fff';
+    this.linearUIConfig.colorTitle= '#fff';
   }
 
   onChange(data: any) {
