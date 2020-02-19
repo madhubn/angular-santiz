@@ -1,6 +1,7 @@
 import { Component, SecurityContext, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DeviceDetectorService } from "ngx-device-detector";
 
 export class LinearUIConfig {
   colorPlate: String;
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
   html: string;
   h_html: string;
 
-  linearUIConfig:LinearUIConfig = new LinearUIConfig();
+  linearUIConfig: LinearUIConfig = new LinearUIConfig();
 
   public form: FormGroup;
   public contactList: FormArray;
@@ -51,20 +52,25 @@ export class AppComponent implements OnInit {
     return this.form.get("uiConfig") as FormArray;
   }
 
-  constructor(private sanitizer: DomSanitizer, private fb: FormBuilder) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private fb: FormBuilder,
+    private deviceService: DeviceDetectorService
+  ) {
     this.html = '<svg onload="alert(1)"> blah </svg>';
     this.h_html = sanitizer.sanitize(
       SecurityContext.HTML,
       '<svg onload="alert(2)"> blah </svg>'
     );
-    this.linearUIConfig.colorBar = 'red';
-    this.linearUIConfig.colorBarProgress = 'green';
-    this.linearUIConfig.colorMajorTicks = '#fff';
-    this.linearUIConfig.colorMinorTicks = '#fff';
-    this.linearUIConfig.colorNumbers= '#fff';
-    this.linearUIConfig.colorPlate= 'black';
-    this.linearUIConfig.colorStrokeTicks= '#fff';
-    this.linearUIConfig.colorTitle= '#fff';
+    this.epicFunction();
+    this.linearUIConfig.colorBar = "red";
+    this.linearUIConfig.colorBarProgress = "green";
+    this.linearUIConfig.colorMajorTicks = "#fff";
+    this.linearUIConfig.colorMinorTicks = "#fff";
+    this.linearUIConfig.colorNumbers = "#fff";
+    this.linearUIConfig.colorPlate = "black";
+    this.linearUIConfig.colorStrokeTicks = "#fff";
+    this.linearUIConfig.colorTitle = "#fff";
   }
 
   onChange(data: any) {
@@ -108,7 +114,7 @@ export class AppComponent implements OnInit {
   }
 
   // contact formgroup
-   createStatics(): FormGroup {
+  createStatics(): FormGroup {
     return this.fb.group({
       staticData: [null, Validators.compose([Validators.required])] // i.e. Home, Office
     });
@@ -172,4 +178,17 @@ export class AppComponent implements OnInit {
   submit() {
     console.log(this.form.value);
   }
+deviceInfo = null;
+
+  epicFunction() {
+      console.log('hello `Home` component');
+      this.deviceInfo = this.deviceService.getDeviceInfo();
+      const isMobile = this.deviceService.isMobile();
+      const isTablet = this.deviceService.isTablet();
+      const isDesktopDevice = this.deviceService.isDesktop();
+      console.log(this.deviceInfo);
+      console.log(isMobile);  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+      console.log(isTablet);  // returns if the device us a tablet (iPad etc)
+      console.log(isDesktopDevice); // returns if the app is running on a Desktop browser.
+    }
 }
