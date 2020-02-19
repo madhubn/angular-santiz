@@ -1,14 +1,15 @@
-<radial-gauge #scale_gauge
-    [options]="scaleGaugeOptions"
-    [value]="(value$ | async)"
-    class="gauge"
->
+<radial-gauge #scale_gauge [options]="scaleGaugeOptions" [value]="(value$ | async)" class="gauge">
 </radial-gauge>
 
-
-<radial-gauge #scale_gauge_semi
-    [options]="scaleGaugeOptionsSemi"
-    [value]="(value$ | async)"
-    class="gauge"
->
+<div style="background-color:black">
+<radial-gauge #scale_gauge_semi [options]="scaleGaugeOptionsSemi" [value]="(value$ | async)" class="gauge">
 </radial-gauge>
+</div>
+
+
+<div style="background-color:black">
+
+  llxss
+	<radial-gauge #scale_gauge_arc [options]="scaleGaugeOptionsArc" [value]="(value$ | async)" class="gauge">
+	</radial-gauge>
+</div>

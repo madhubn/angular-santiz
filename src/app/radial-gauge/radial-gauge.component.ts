@@ -18,12 +18,15 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
   private radialGauge: RadialGauge;
   @ViewChild("scale_gauge_semi", { static: false })
   private radialGaugeSemi: RadialGauge;
+  @ViewChild("scale_gauge_arc", { static: false })
+  private radialGaugeArc: RadialGauge;
 
   mins = 0;
   maxs = 100;
 
   public scaleGaugeOptions: any;
   public scaleGaugeOptionsSemi: any;
+  public scaleGaugeOptionsArc: any;
   public value$: Observable<number>;
 
   private plateColor = {
@@ -42,9 +45,9 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.radialGauge.update(this.scaleGaugeOptions);
-    this.radialGaugeSemi.update(this.scaleGaugeOptionsSemi);
-
+    // this.radialGauge.update(this.scaleGaugeOptions);
+    // this.radialGaugeSemi.update(this.scaleGaugeOptionsSemi);
+    // this.radialGaugeArc.update(this.scaleGaugeOptionsArc);
     // timer that updates plate.color property
     // interval(100).subscribe( t => this.updateCoverPlateColor() );
   }
@@ -77,7 +80,7 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
       title: "",
       width: "250",
       height: "250",
-      majorTicks: "[0,1,2,3,4,5,6,7,8,9,0]",
+      // majorTicks: "[0,1,2,3,4,5,6,7,8,9,0]",
       units: "Lbs",
       minValue: this.mins,
       maxValue: this.maxs,
@@ -114,10 +117,10 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
       colorPlate: "black",
       // colorPlateEnd: "#fff",
       // colorPlateEnd: "red",
-      highlightsWidth: 13,
+      // highlightsWidth: 13,
       highlights: [
-        { from: 0, to: -50, color: "red" },
-        { from: 0, to: 50, color: "green" }
+        { from: -50, to: 0, color: "rgba(0,0, 255, .3)" },
+        { from: 0, to: 50, color: "rgba(255, 0, 0, .3)" }
       ],
       colorMajorTicks: "#fff",
       colorMinorTicks: "#fff",
@@ -149,7 +152,65 @@ export class RadialGaugeComponent implements OnInit, AfterViewInit {
       fontUnits: "led",
       animationTarget: "needle",
       colorBorderShadow: "red",
-      colorValueBoxBackground: "red",
+      colorValueBoxBackground: "red"
+      // colorNeedleCircleOuter: "true",
+    };
+
+    this.scaleGaugeOptionsArc = {
+      title: "",
+      width: "250",
+      height: "250",
+      // majorTicks: "[-50,-40,-30,-20,-10,0,10,20,30,40,50]",
+      units: "°C",
+      minValue: 0,
+      maxValue: 220,
+      minorTicks: "2",
+      strokeTicks: "true",
+      valueBox: "true",
+      animationRule: "bounce",
+      animationDuration: "500",
+      colorPlate: "transparent",
+      // colorPlateEnd: "#fff",
+      // colorPlateEnd: "red",
+      // highlightsWidth: 0,
+      highlights: [
+        { from: 0, to: 50, color: "rgba(0,255,0,.15)" },
+        { from: 50, to: 100, color: "rgba(255,255,0,.15)" },
+        { from: 100, to: 150, color: "rgba(255,30,0,.25)" },
+        { from: 150, to: 200, color: "rgba(255,0,225,.25)" },
+        { from: 200, to: 220, color: "rgba(0,0,255,.25)" }
+      ],
+      colorMajorTicks: "#fff",
+      colorMinorTicks: "#fff",
+      colorStrokeTicks: "#fff",
+      colorTitle: "#fff",
+      colorNumbers: "#fff",
+      borderShadowWidth: 0,
+      borders: false,
+      needleType: "arrow",
+      needleWidth: 2,
+      needleCircleSize: 7,
+      colorBorderOuter: "#333",
+      colorBorderOuterEnd: "#111",
+      colorBorderMiddle: "#222",
+      colorBorderMiddleEnd: "#111",
+      colorBorderInner: "#111",
+      colorBorderInnerEnd: "#333",
+      colorNeedleShadowDown: "#333",
+      colorNeedleCircleOuter: "#333",
+      colorNeedleCircleOuterEnd: "#111",
+      colorNeedleCircleInner: "#111",
+      colorNeedleCircleInnerEnd: "#222",
+      colorValueBoxRect: "#222",
+      valueBoxBorderRadius: 0,
+      colorValueBoxRectEnd: "#333",
+      fontValue: "led",
+      fontNumbers: "led",
+      fontTitle: "led",
+      fontUnits: "led",
+      animationTarget: "needle",
+      colorBorderShadow: "red"
+      // colorValueBoxBackground: "red",
       // colorNeedleCircleOuter: "true",
     };
   }
