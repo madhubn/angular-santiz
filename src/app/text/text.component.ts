@@ -1,13 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormArray, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray, Validators } from "@angular/forms";
 @Component({
   selector: "app-text",
   templateUrl: "./text.component.html",
   styleUrls: ["./text.component.css"]
 })
 export class TextComponent {
+  newFormGroup: FormGroup;
+  expression: any;
+
   constructor(public fb: FormBuilder) {
     this.addItems();
+    this.craeteForm();
   }
 
   /*################ Registration Form ################*/
@@ -36,5 +40,11 @@ export class TextComponent {
   onSubmit() {
     this.removeIt();
     alert(JSON.stringify(this.registrationForm.get("addDynamicElement").value));
+  }
+
+  craeteForm() {
+    this.newFormGroup = this.fb.group({
+      expression: ["", Validators.required]
+    });
   }
 }
