@@ -19,15 +19,15 @@ import * as d3Axis from "d3";
 export class CanvasTestComponent implements OnInit {
   public title = "Line Chart";
   data: any[] = [
-    { date: new Date("2010-01-01"), value: 40 },
-    { date: new Date("2010-01-04"), value: 93 },
-    { date: new Date("2010-01-05"), value: 95 },
-    { date: new Date("2010-01-06"), value: 130 },
-    { date: new Date("2010-01-07"), value: 110 },
-    { date: new Date("2010-01-08"), value: 120 },
-    { date: new Date("2010-01-09"), value: 129 },
-    { date: new Date("2010-01-10"), value: 107 },
-    { date: new Date("2010-01-11"), value: 140 }
+    { date: new Date("2010-01-01"), value: 40, value1: 50 },
+    { date: new Date("2010-01-04"), value: 93, value1: 10 },
+    { date: new Date("2010-01-05"), value: 95, value1: 20 },
+    { date: new Date("2010-01-06"), value: 130, value1: 30 },
+    { date: new Date("2010-01-07"), value: 110, value1: 50 },
+    { date: new Date("2010-01-08"), value: 120, value1: 60 },
+    { date: new Date("2010-01-09"), value: 129, value1: 70 },
+    { date: new Date("2010-01-10"), value: 107, value1: 50 },
+    { date: new Date("2010-01-11"), value: 140, value1: 100 }
   ];
 
   private margin = { top: 20, right: 20, bottom: 30, left: 50 };
@@ -60,10 +60,12 @@ export class CanvasTestComponent implements OnInit {
   }
   private addXandYAxis() {
     // range of data configuring
-    this.x = d3Scale.scaleTime().range([0, this.width]);
+    // this.x = d3Scale.scaleTime().range([0, this.width]);
+    this.x = d3Scale.scaleLinear().range([0, this.width]);
     this.y = d3Scale.scaleLinear().range([this.height, 0]);
-    this.x.domain(d3Array.extent(this.data, d => d.date));
+    // this.x.domain(d3Array.extent(this.data, d => d.date));
     this.y.domain(d3Array.extent(this.data, d => d.value));
+    this.x.domain(d3Array.extent(this.data, d => d.value1));
     // Configure the X Axis
     this.svg
       .append("g")
@@ -79,7 +81,8 @@ export class CanvasTestComponent implements OnInit {
   private drawLineAndPath() {
     this.line = d3Shape
       .line()
-      .x((d: any) => this.x(d.date))
+      // .x((d: any) => this.x(d.date))
+      .x((d: any) => this.x(d.value1))
       .y((d: any) => this.y(d.value));
     // Configuring line path
     this.svg
