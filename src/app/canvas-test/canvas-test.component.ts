@@ -636,8 +636,6 @@ export class CanvasTestComponent implements OnInit {
     this.drawLineAndPath();
   }
 
-  ;
-
   private buildSvg() {
     this.svg = d3
       .select("svg")

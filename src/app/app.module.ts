@@ -10,6 +10,7 @@ import { LinearGaugeComponent } from "./linear-gauge/linear-gauge.component";
 import { RadialGaugeComponent } from "./radial-gauge/radial-gauge.component";
 import { DeviceDetectorModule } from "ngx-device-detector";
 import { CanvasTestComponent } from "./canvas-test/canvas-test.component";
+import { MultiLineComponent } from './multi-line/multi-line.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { CanvasTestComponent } from "./canvas-test/canvas-test.component";
     TextComponent,
     LinearGaugeComponent,
     RadialGaugeComponent,
-    CanvasTestComponent
+    CanvasTestComponent,
+    MultiLineComponent
   ],
   exports: [SafePipe],
   bootstrap: [AppComponent]
