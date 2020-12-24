@@ -8,7 +8,8 @@ import { SafePipe } from "./safe.pipe";
 import { TextComponent } from "./text/text.component";
 import { LinearGaugeComponent } from "./linear-gauge/linear-gauge.component";
 import { RadialGaugeComponent } from "./radial-gauge/radial-gauge.component";
-import { DeviceDetectorModule } from 'ngx-device-detector';
+import { DeviceDetectorModule } from "ngx-device-detector";
+import { CanvasTestComponent } from "./canvas-test/canvas-test.component";
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     SafePipe,
     TextComponent,
     LinearGaugeComponent,
-    RadialGaugeComponent
+    RadialGaugeComponent,
+    CanvasTestComponent
   ],
   exports: [SafePipe],
   bootstrap: [AppComponent]
