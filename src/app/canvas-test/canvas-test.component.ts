@@ -667,6 +667,7 @@ export class CanvasTestComponent implements OnInit {
   private drawLineAndPath() {
     this.line = d3Shape
       .line()
+      .curve(d3Shape.curveBasis)
       .x((d: any) => this.x(d.date))
       // .x((d: any) => this.x(d.value))
       .y((d: any) => this.y(d.value));

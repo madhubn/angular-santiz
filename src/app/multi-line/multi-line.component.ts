@@ -32,6 +32,7 @@ export class MultiLineComponent implements OnInit {
   ngOnInit() {
     this.data = TEMPERATURES.map(v => v.values.map(v => v.date))[0];
     //.reduce((a, b) => a.concat(b), []);
+    console.log(" this.data", this.data);
 
     this.initChart();
     this.drawAxis();

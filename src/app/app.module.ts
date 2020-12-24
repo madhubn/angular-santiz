@@ -11,6 +11,7 @@ import { RadialGaugeComponent } from "./radial-gauge/radial-gauge.component";
 import { DeviceDetectorModule } from "ngx-device-detector";
 import { CanvasTestComponent } from "./canvas-test/canvas-test.component";
 import { MultiLineComponent } from './multi-line/multi-line.component';
+import { DynaComponent } from './dyna/dyna.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { MultiLineComponent } from './multi-line/multi-line.component';
     LinearGaugeComponent,
     RadialGaugeComponent,
     CanvasTestComponent,
-    MultiLineComponent
+    MultiLineComponent,
+    DynaComponent
   ],
   exports: [SafePipe],
   bootstrap: [AppComponent]
