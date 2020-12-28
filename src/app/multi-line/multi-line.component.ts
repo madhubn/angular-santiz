@@ -68,6 +68,7 @@ export class MultiLineComponent implements OnInit {
     this.y.domain([
       d3Array.min(TEMPERATURES, function(c) {
         return d3Array.min(c.values, function(d) {
+          console.log("c", d);
           return d.temperature;
         });
       }),
