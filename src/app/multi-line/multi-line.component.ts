@@ -32,7 +32,7 @@ export class MultiLineComponent implements OnInit {
   ngOnInit() {
     this.data = TEMPERATURES.map(v => v.values.map(v => v.date))[0];
     //.reduce((a, b) => a.concat(b), []);
-    console.log(" this.data", this.data);
+    console.log("this.data", this.data);
 
     this.initChart();
     this.drawAxis();
@@ -68,7 +68,6 @@ export class MultiLineComponent implements OnInit {
     this.y.domain([
       d3Array.min(TEMPERATURES, function(c) {
         return d3Array.min(c.values, function(d) {
-          console.log("c", d);
           return d.temperature;
         });
       }),

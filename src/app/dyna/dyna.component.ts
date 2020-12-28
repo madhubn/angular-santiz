@@ -16,6 +16,7 @@ export class DynaComponent implements OnInit {
   title = "Multi-Series Dyna";
 
   data = dataD;
+  datX: any;
 
   svg: any;
   margin = { top: 20, right: 80, bottom: 30, left: 50 };
@@ -38,6 +39,10 @@ export class DynaComponent implements OnInit {
   private initChart(): void {
     this.svg = d3.select("svg");
 
+    this.datX = dataD.map(v => v.values.map(v => v[0]))[0];
+
+    console.log("this.datX", this.datX);
+
     this.width = this.svg.attr("width") - this.margin.left - this.margin.right;
     this.height =
       this.svg.attr("height") - this.margin.top - this.margin.bottom;
@@ -49,7 +54,7 @@ export class DynaComponent implements OnInit {
         "translate(" + this.margin.left + "," + this.margin.top + ")"
       );
 
-    this.x = d3Scale.scaleTime().range([0, this.width]);
+    this.x = d3Scale.scaleLinear().range([0, this.width]);
     this.y = d3Scale.scaleLinear().range([this.height, 0]);
     this.z = d3Scale.scaleOrdinal(d3ScaleChromatic.schemeCategory10);
 
@@ -59,20 +64,26 @@ export class DynaComponent implements OnInit {
       .x((d: any) => this.x(d[0]))
       .y((d: any) => this.y(d[1]));
 
-    this.x.domain(d3Array.extent(this.data, d => d[0]));
+    this.x.domain(d3Array.extent(this.datX, (d: any) => d));
 
     this.y.domain([
-      d3Array.min(this.data, function(c) {
-        console.log("c", c);
-        return c[1];
+      d3Array.min(dataD, function(c) {
+        return d3Array.min(c.values, function(d) {
+          return d[1];
+        });
       }),
-      d3Array.max(this.data, function(c) {
-        console.log("c max", c);
-        return c[1];
+      d3Array.max(dataD, function(c) {
+        return d3Array.max(c.values, function(d) {
+          return d[1];
+        });
       })
     ]);
 
-    this.z.domain("heloo");
+    this.z.domain(
+      dataD.map(function(c) {
+        return c.id;
+      })
+    );
   }
 
   private drawAxis(): void {
@@ -97,7 +108,7 @@ export class DynaComponent implements OnInit {
   private drawPath(): void {
     let city = this.g
       .selectAll(".city")
-      .data(this.data)
+      .data(dataD)
       .enter()
       .append("g")
       .attr("class", "city");
@@ -105,23 +116,23 @@ export class DynaComponent implements OnInit {
     city
       .append("path")
       .attr("class", "line")
-      .attr("d", d => this.line(this.data))
-      .style("stroke", this.z());
+      .attr("d", d => this.line(d.values))
+      .style("stroke", d => this.z(d.id));
 
     city
       .append("text")
       .datum(function(d) {
-        // return { id: "hello", value: this.data[this.data.length - 1] };
+        return { id: d.id, value: d.values[d.values.length - 1] };
       })
-      // .attr("transform", d => {
-      //   // console.log("ddddddd");
-      //   // "translate(" + this.x(d.date) + "," + this.y(d.value) + ")";
-      // })
+      .attr(
+        "transform",
+        d => "translate(" + this.x(d.value[0]) + "," + this.y(d.value[1]) + ")"
+      )
       .attr("x", 3)
       .attr("dy", "0.35em")
-      .style("font", "10px sans-serif");
-    // .text(function(d) {
-    //   return d.id;
-    // });
+      .style("font", "10px sans-serif")
+      .text(function(d) {
+        return d.id;
+      });
   }
 }
