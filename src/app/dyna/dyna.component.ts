@@ -116,6 +116,7 @@ export class DynaComponent implements OnInit {
     city
       .append("path")
       .attr("class", "line")
+      .attr("fill", "white")
       .attr("d", d => this.line(d.values))
       .style("stroke", d => this.z(d.id));
 
